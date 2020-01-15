@@ -14,6 +14,12 @@ Change your working directory into the project directory
 $ cd consuming-restful-api-in-react
 ```
 ## Run
+
+Install npm modules
+```bash
+$ npm install
+```
+
 Start the application
 ```bash
 $ npm start
