@@ -44,7 +44,7 @@ jobs:
  #     run: npm run test:headless
 
     - name: Build
-      run: npm run build 
+      run: PUBLIC_URL="\consuming-restful-api-in-react" npm run build 
 
     - name: Deploy
       if: success()
