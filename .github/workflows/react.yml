@@ -1,0 +1,36 @@
+name: Build Dist
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm install
+
+#    - name: Run tests
+ #     run: npm run test:headless
+
+    - name: Build
+      run: PUBLIC_URL="\consuming-restful-api-in-react" npm run build 
+
+    - name: Deploy
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: master_pages  # default: gh-pages
+        publish_dir: build
+        enable_jekyll: false
